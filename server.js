@@ -19,7 +19,7 @@ app.get("/tables", function(req, res) {
 });
 
 app.get("/reserve", function(req, res) {
-  res.sendFile(path.join(__dirname, "reserve.html"));
+  res.sendFile(path.join(__dirname, "reservations.html"));
 });
 
 app.listen(PORT, function() {
