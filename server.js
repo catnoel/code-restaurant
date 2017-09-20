@@ -25,3 +25,32 @@ app.get("/reserve", function(req, res) {
 app.listen(PORT, function() {
   console.log("App listening on PORT " + PORT);
 });
+
+var tables = [
+	{
+		name: 'Adam',
+		number: '123',
+		email: 'email1@dummy.com'
+	},
+	{
+		name: 'Catherine',
+		number: '456',
+		email: '2ndemail@placeholder.com'
+	},
+	{
+		name: 'Manish',
+		number: '789',
+		email: 'email3@nothing.com'
+	}
+]
+
+app.get('/api/tables', function (request, response) {
+	 response.json(tables);
+})
+
+app.post('/api/tables', function (request, response){
+	var newRes = request.body;
+	console.log(newRes);
+	tables.push(newRes);
+	response.json(tables);
+})
