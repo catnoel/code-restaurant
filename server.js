@@ -42,15 +42,27 @@ var tables = [
 		number: '789',
 		email: 'email3@nothing.com'
 	}
-]
+];
 
-app.get('/api/tables', function (request, response) {
-	 response.json(tables);
+var waitList = [];
+
+app.get('/api/:queries?', function (request, response) {
+	var query = request.param.queries;
+	if (query === 'tables') {
+		response.json(tables);
+	} else if (query === 'waitlist') {
+		response.json(waitList);
+	}
 })
 
 app.post('/api/tables', function (request, response){
 	var newRes = request.body;
 	console.log(newRes);
-	tables.push(newRes);
-	response.json(tables);
+	if (tables.length !== 5) {
+		tables.push(newRes);
+		response.json(tables);
+	} else {
+		waitList.push(newRes);
+		response.json(waitList);
+	}
 })
