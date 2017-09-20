@@ -41,28 +41,26 @@ var tables = [
 		name: 'Manish',
 		number: '789',
 		email: 'email3@nothing.com'
-	}
+	},
+	{
+    name: "something1",
+    number: "78842",
+    email: "soemthigna2iw@aiskj.com"
+  },
+  {
+    name: "onemore",
+    number: "79879382",
+    email: "woaieljk,@ousijkd,.com"
+  }
 ];
 
-var waitList = [];
-
-app.get('/api/:queries?', function (request, response) {
-	var query = request.param.queries;
-	if (query === 'tables') {
-		response.json(tables);
-	} else if (query === 'waitlist') {
-		response.json(waitList);
-	}
+app.get('/api/tables', function (request, response) {
+	response.json(tables);
 })
 
 app.post('/api/tables', function (request, response){
 	var newRes = request.body;
 	console.log(newRes);
-	if (tables.length !== 5) {
-		tables.push(newRes);
-		response.json(tables);
-	} else {
-		waitList.push(newRes);
-		response.json(waitList);
-	}
+	tables.push(newRes);
+	response.json(tables);
 })
